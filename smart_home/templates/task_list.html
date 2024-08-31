@@ -23,6 +23,10 @@
           <button class="audio-button" style="font-size: 12px;">🔊</button>
           <div class="translated-text" style="margin-top: 15px; font-weight: bold;"></div>
           <audio class="translation-audio" controls style="display:none; margin-top: 10px;"></audio>
+          <a href="{% url 'task_detail' task.pk %}">VIEW TASK</a>
+
+          <a href="{% url 'task_complete' task.pk %}">Complete</a>
+
         </div>
       {% endfor %}
     </div>
