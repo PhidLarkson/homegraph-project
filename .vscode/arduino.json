@@ -1,0 +1,4 @@
+{
+    "board": "arduino:avr:uno",
+    "sketch": "smart_home/client/archives/cli.ino"
+}

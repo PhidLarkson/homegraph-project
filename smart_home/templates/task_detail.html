@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ task.title }}</h2>
+  <p>{{ task.description }}</p>
+  {% if task.image %}
+    <img src="{{ task.image.url }}" alt="Task image">
+  {% endif %}
+  <p>Amount: {{ task.amount }}</p>
+  {% if task.url %}
+    <p><a href="{{ task.url }}">Task URL</a></p>
+  {% endif %}
+  <p>Created by: {{ task.created_by }}</p>
+{% endblock %}

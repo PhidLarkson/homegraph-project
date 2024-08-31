@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Incentive Platform</title>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Share Your Tasks for Incentive Packages</h2>
+
+    <!-- Task cards generated from Django context -->
+    <div class="controls">
+      {% for task in tasks %}
+        <div class="card" style="width: 300px; margin: 10px;">
+          <h1 class="card-title">{{ task.title }}</h1>
+          <img src="{{ task.image.url }}" class="card-img-top" alt="Task Image" style="width: 100%; margin: auto; height: 100px;">
+          <p class="task-description">{{ task.description }}</p>
+          <button class="translate-button" data-text="{{ task.description }}">Translate</button>
+          <button class="audio-button" style="font-size: 12px;">🔊</button>
+          <div class="translated-text" style="margin-top: 15px; font-weight: bold;"></div>
+          <audio class="translation-audio" controls style="display:none; margin-top: 10px;"></audio>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="powered-by">
+    Powered by <a href="https://ghananlp.org" target="_blank">Ghana NLP APIs</a>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const translateButtons = document.querySelectorAll('.translate-button');
+      const audioButtons = document.querySelectorAll('.audio-button');
+
+      translateButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          const taskDescription = button.dataset.text;
+          console.log('Task Description:', taskDescription); // Log the task description for debugging
+
+          const body = {
+            "in": taskDescription,
+            "lang": "en-tw"  // Translation to Akan (Twi)
+          };
+
+          fetch('https://translation-api.ghananlp.org/v1/translate', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+              'Content-Type': 'application/json',
+              'Ocp-Apim-Subscription-Key': '9e262bab68f04e20aab7f5a9d0410c92'
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log('API Response:', data); // Log the API response for debugging
+            const translatedTextElement = document.querySelectorAll('.translated-text')[index];
+            if (translatedTextElement) {
+              translatedTextElement.innerText = data || 'Translation failed';
+            }
+          })
+          .catch(err => {
+            console.error('Translation failed:', err);
+          });
+        });
+      });
+
+      audioButtons.forEach((button, index) => {
+        button.addEventListener('click', () => {
+          const translatedTextElement = document.querySelectorAll('.translated-text')[index];
+          const translatedText = translatedTextElement ? translatedTextElement.innerText : '';
+
+          if (!translatedText) {
+            alert('Please translate the text first!');
+            return;
+          }
+
+          const body = {
+            "text": translatedText,
+            "language": "tw"  // TTS in Twi
+          };
+
+          fetch('https://translation-api.ghananlp.org/tts/v1/tts', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {
+              'Content-Type': 'application/json',
+              'Ocp-Apim-Subscription-Key': '9e262bab68f04e20aab7f5a9d0410c92'
+            }
+          })
+          .then(response => response.blob())
+          .then(blob => {
+            const audioUrl = URL.createObjectURL(blob);
+            const audioElement = document.querySelectorAll('.translation-audio')[index];
+            if (audioElement) {
+              audioElement.src = audioUrl;
+              audioElement.style.display = 'block';
+            }
+          })
+          .catch(err => {
+            console.error('Audio generation failed:', err);
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
+{% endblock %}

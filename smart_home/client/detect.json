@@ -1,0 +1,1 @@
+{"utility": {"led_status": "off", "signal_strength": 80}, "lighting": {"living_room": {"status": "B", "brightness": 0}, "kitchen": {"status": "off", "brightness": 75}}, "temperature": {"current": 22.5, "desired": 21.0}, "security": {"door_locked": true, "motion_detected": false}}

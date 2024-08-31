@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeChain Project</title>
+  <link rel="stylesheet" href="{% static 'client/css/home.css' %}"> </head>
+</head>
+<body>
+    <header class="header">
+        <h1>
+            THE SOCIAL GOOD DASHBOARD - ETHAccra Hackathon 2024 🇬🇭
+        </h1>
+        <a href="{% url 'task_create' %}">Create new task ➕</a> ||
+        <a href="/">Back to IoT Panel << </a>
+
+
+    </header>
+    {% block content %}
+
+
+{% endblock %}
+</body>
+
+
+
+
+</html>

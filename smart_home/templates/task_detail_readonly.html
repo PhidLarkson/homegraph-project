@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ task.title }}</h2>
+  <p>{{ task.description }}</p>
+  {% if task.image %}
+    <img src="{{ task.image.url }}" alt="Task image">
+  {% endif %}
+  <p>Amount: {{ task.amount }}</p>
+  <p><a href="{{ task.url }}">Task URL</a></p>
+  <p>Completed by: {{ task.completed_by }}</p>
+  <p>Proof of work: <a href="{{ task.proof_of_work_url }}">View Proof</a></p>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home</title>  
+    <link rel="stylesheet" href="{% static 'client/css/client.css' %}">
+
+
+</head>
+
+<body>
+    <div class="block">
+        <h1>THE 23/24 SMART HOME UNIT PROJECT :: PHASE 2</h1>
+        <p class="host"> SELECT THE USERNAME TO SIGN OUT OF THE PROGRAM :: <a class="" href="{% url 'logout' %}">{{user}}</a></p>
+        ERROR MESSAGE
+  
+        <div class="msg" contenteditable="True">
+          {% if error %}
+        <p style="color:red;">{{error}}</p>
+        
+        {% endif %}
+        {% if message %}
+        <p style="color:greenyellow;">{{message}}</p>
+        
+        {% endif %}
+        
+       
+        ...
+        </div>
+        <br>
+
+        <a href="{% url 'add' %}" class="add">+ ADD AN I/O NODE</a>
+        {% if request.user.is_superuser %}
+        <a href="{% url 'connect' %}" class="connect">ESTABLISH CONNECTION</a>
+        {% endif %}
+        <div class="main">
+          <div>{% for node in nodes %}
+            <div class="block" style="width:300px;">
+              <h3>{{ node.roomObject_name }} | SERIAL KEY :: {{ node.interaction_key }}</h3>
+              <a href="{% url 'send' pk=node.id %}" class="button">WRITE</a>
+
+              <a href="{% url 'edit_post' pk=node.id %}" class="text-light">Edit</a>
+              {% if request.user.is_superuser %}
+              <a href="{% url 'delete_post' pk=node.id %}" class="" style="color: red;">X</a>
+              <a class="block" style="box-shadow: 2px 2px; font-size: small;">c{{ node.interaction_count }}</a>
+              <a style="color:blue; font-size:35px">...</a>
+              {% endif %}
+            </div>
+          {% endfor %}</div></div>
+        
+    </div>
+</body>
+
+</html>

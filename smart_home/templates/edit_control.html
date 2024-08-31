@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Room Element</title>
+    <link rel="stylesheet" href="{% static 'client/css/element-form.css' %}">  </head>
+
+<body>
+    <div class="container">
+        <h1>Edit Room Element</h1>
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_service_room">{{ form.service_room.label }}</label>
+                {{ form.service_room }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_roomObject_name">{{ form.roomObject_name.label }}</label>
+                {{ form.roomObject_name }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_switch_type">{{ form.switch_type.label }}</label>
+                {{ form.switch_type }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_interaction_key">{{ form.interaction_key.label }}</label>
+                {{ form.interaction_key }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_id">{{ form.id.label }}</label>
+                {{ form.id }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_config_id">{{ form.config_id.label }}</label>
+                {{ form.config_id }}
+            </div>
+
+            <div class="form-group">
+                <label for="id_color">{{ form.color.label }}</label>
+                {{ form.color }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+
+</html>

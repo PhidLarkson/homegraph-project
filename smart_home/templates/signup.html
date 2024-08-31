@@ -1,0 +1,55 @@
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+</head>
+<body class="bg-slate-100">
+    {% if error %}
+        <h3>{{ errors }}</h3>
+    {% endif %}
+    <main class="min-h-screen flex flex-col items-center justify-center text-black">
+        <div class="space-y-3 my-5">
+            <h1 class="text-2xl font-extrabold text-slate-500 ">REGISTER TO THE HOME NETWORK</h1>
+            <p class="text-center">
+                or 
+                <a href="/login" class="text-blue-400 border-b border-blue-400 text-sm"> RETURN TO PORTAL LOGIN</a>
+            </p>
+        </div>
+        <div class="max-w-md w-full mx-auto bg-white rounded-lg p-7 space-y-3 font-mono">
+            <form method="post">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                    <div class="flex flex-col rounded-5 ps-4 p-3 mb-3 border-2 rounded-md w-full hover:bg-black hover:text-white transition duration-300">
+                        <label class="mb-1 text-sm" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                    {% for error in field.errors %}
+                        <div class="mb-5 p-4 rounded-xl bg-red-300 text-white">
+                            <p>{{ error|escape }}</p>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                <div>
+                    <button type="submit" class="w-full rounded-md bg-black text-white py-2">Register</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+
+</body>

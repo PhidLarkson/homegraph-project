@@ -1,0 +1,29 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: sepolia
+    source:
+      address: "0x5ce2B056ecda83beFAC688527cB2db32944D6A29"
+      abi: Contract
+      startBlock: 6600934
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BillGenerated
+        - BillPaid
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: BillGenerated(indexed address,uint256,uint8,uint256)
+          handler: handleBillGenerated
+        - event: BillPaid(indexed address,uint256)
+          handler: handleBillPaid
+      file: ./src/contract.ts

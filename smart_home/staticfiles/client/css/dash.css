@@ -1,0 +1,144 @@
+body {
+    /* background-image: linear-gradient(to right top, #00183d, #004a7e, #007f97, #00b374, #75de02); */
+    background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+    background-color: #16001a;
+
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 2rem;
+    margin: 0;
+    overflow-x: hidden;
+    /* background-size: cover; */
+}
+.main-data {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 90%;
+}
+
+header {
+    background-color: #171927d0;
+    
+    backdrop-filter: blur(1px);
+    padding: 1.5rem;
+    border-radius: 8px;
+    color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 42, 54, 0.603);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #ffffff;
+    text-decoration: dashed;
+    text-decoration-thickness: 2px;
+    text-decoration-color: purple;
+    text-decoration: dashed;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #444444;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #171927d0;
+    background-image: url("https://www.transparenttextures.com/patterns/basketball.png");
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+}
+
+.dashboard-section {
+    
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 1.5rem;
+    width: 40vw;
+    margin: 20px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.section-header h2 {
+    font-size: 1.4rem;
+    color: #efefef;
+}
+
+.fas {
+    color: #3cff00;
+    cursor: pointer;
+}
+
+.data-table {
+    background-color: #1c1c1c00;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    color: #ddd;
+    font-size: 0.9rem;
+}
+
+.data-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #333;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.data-table th {
+    background-color: #222;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.data-table tr {
+    transition: background-color 0.3s ease;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+.data-table tr:hover {
+    background-color: #333;
+}
+
+.data-summary {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    color: #000000;
+    font-size: 0.9rem;
+}

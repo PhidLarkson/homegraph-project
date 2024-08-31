@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeChain Project</title>
+  <link rel="stylesheet" href="{% static 'client/css/home.css' %}"> </head>
+</head>
+
+ <style>
+      /* Add this CSS */
+      .nav-list {
+        display: none;
+        list-style-type: none;
+        text-decoration: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+    </style>
+  </head>
+
+  <body class="bg-gray-100 font-sans">
+
+    <header class="header">
+      <div style="display: flex; justify-content: space-between;">
+        <div><h1 class="logo">SMART HOME IoT Dashboard - ETHAccra Hackathon 2024 🇬🇭</h1></div>
+        <div><button class="menu-toggle" type="button"><i class="fas fa-bars"></i></button></div>
+      </div>
+      
+      <nav class="nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="/tasks">Social Good</a></li>
+          <li class="nav-item"><a href="/dashboard">Transactions</a></li>
+          <li class="nav-item"><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <script>
+      // Add this JavaScript
+      document.querySelector('.menu-toggle').addEventListener('click', () => {
+        
+        const navList = document.querySelector('.nav-list');
+        navList.style.display = navList.style.display === 'block' ? 'none' : 'block';
+      });
+    </script>
+
+  <div class="container">
+
+    <main class="">
+
+      <div class="">
+        <h3 class="">System Status</h3>
+        <div class="">
+          {% if not errors %}
+            <i class=""></i>
+            <p class="running">Running</p>
+          {% else %}
+            <i class=""></i>
+            <ul>
+              {% for error in errors %}
+                <li class="stop">{{ error }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div><br><br>
+              <!-- Camera and Audio Section -->
+              <div class="card">
+                <h3 class="text-lg font-medium text-gray-800 mb-2">Security Camera</h3>
+                <div class="flex items-center space-x-4">
+                  <video id="camera" autoplay muted playsinline class="border border-gray-300"></video>
+                  <p class="text-gray-800 font-semibold">Live Camera Feed</p>
+                </div>
+                <p class="text-gray-600">Audio is being monitored.</p>
+              </div>
+              <br><br>
+
+
+<div class="card">
+        <!-- <h3 class="text-lg font-medium text-gray-800 mb-2">Weather</h3> -->
+        <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7.45508 2V3M11.3438 3.61084L10.6366 4.31795M4.27344 10.6821L3.56633 11.3892M1.95508 7.5H2.95508M3.56641 3.61084L4.27351 4.31795M6.50049 9.21251C6.38862 9.15163 6.2832 9.08038 6.18553 9.00006C5.73952 8.63325 5.45508 8.07714 5.45508 7.45459C5.45508 6.35002 6.35051 5.45459 7.45508 5.45459C8.21398 5.45459 8.87416 5.87727 9.21303 6.50006C9.29756 6.65541 9.3621 6.82321 9.40319 7M9.8 21C7.14903 21 5 18.9466 5 16.4137C5 14.3144 6.6 12.375 9 12C9.75283 10.274 11.5346 9 13.6127 9C16.2747 9 18.4504 10.9907 18.6 13.5C20.0127 14.0956 21 15.5574 21 17.1402C21 19.2719 19.2091 21 17 21L9.8 21Z" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+        <div class="flex items-center space-x-4">
+          <i class="fas fa-cloud text-gray-500 text-2xl"></i>
+          <div class="controls">
+           <div id="weather-info">
+            <!-- <p class="text-gray-600">Accra, Ghana</p> -->
+            <p class="text-gray-800 font-semibold">Loading...</p>
+          </div> 
+
+          
+          </div>
+          </div>
+
+          <script src="https://unpkg.com/htmx.org/dist/htmx.js"></script>
+          <script>
+            function getWeather() {
+              const url = "https://api.openweathermap.org/data/2.5/weather?lat=5.556&lon=-0.1969&appid=86e5f7b60dba4e79cb01416ac023bd2d";
+
+              fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                  const weatherInfo = document.getElementById("weather-info");
+                  weatherInfo.innerHTML = `
+                    <p class="text-gray-600">${data.name}, ${data.sys.country}</p>
+                    <p class="text-gray-800 font-semibold">${data.main.temp-273}°C</p>
+                    <p class="text-gray-800 font-semibold">Humidity is about ${data.main.humidity}.</p>
+                  `;
+                })
+                .catch(error => {
+                  console.error("Error fetching weather data:", error);
+                  const weatherInfo = document.getElementById("weather-info");
+                  weatherInfo.innerHTML = `
+                    <p class="text-gray-600">Error fetching weather data</p>
+                    <p class="text-gray-800 font-semibold">N/A</p>
+                  `;
+                });
+            }
+
+            getWeather();
+          </script>
+        </div>
+      </div>
+      <br><br>
+
+
+      <div class="controls">
+        {% for node in nodes %}
+        <div class="control">
+          <h4 class="">{{ node.roomObject_name }}</h4>
+          <svg width="64px" height="64px" viewBox="-10 -10 40.00 40.00" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffc800" stroke="#ffc800"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>control [#848]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -4439.000000)" fill="#ffc800"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M101,4285 L98,4285 L98,4282 C98,4281.448 98.448,4281 99,4281 L101,4281 C101.552,4281 102,4281.448 102,4282 L102,4284 C102,4284.552 101.552,4285 101,4285 L101,4285 Z M102,4293 L102,4296 C102,4296.552 101.552,4297 101,4297 L99,4297 C98.448,4297 98,4296.552 98,4296 L98,4293 L102,4293 Z M92,4291 L96,4291 L96,4287 L92,4287 L92,4291 Z M89,4297 L87,4297 C86.448,4297 86,4296.552 86,4296 L86,4294 C86,4293.448 86.448,4293 87,4293 L90,4293 L90,4296 C90,4296.552 89.552,4297 89,4297 L89,4297 Z M86,4284 L86,4282 C86,4281.448 86.448,4281 87,4281 L89,4281 C89.552,4281 90,4281.448 90,4282 L90,4285 L87,4285 C86.448,4285 86,4284.552 86,4284 L86,4284 Z M102,4279 L98,4279 C96.895,4279 96,4279.895 96,4281 L96,4285 L92,4285 L92,4281 C92,4279.895 91.105,4279 90,4279 L86,4279 C84.895,4279 84,4279.895 84,4281 L84,4285 C84,4286.105 84.895,4287 86,4287 L90,4287 L90,4291 L86,4291 C84.895,4291 84,4291.895 84,4293 L84,4297 C84,4298.105 84.895,4299 86,4299 L90,4299 C91.105,4299 92,4298.105 92,4297 L92,4293 L96,4293 L96,4297 C96,4298.105 96.895,4299 98,4299 L102,4299 C103.105,4299 104,4298.105 104,4297 L104,4293 C104,4291.895 103.105,4291 102,4291 L98,4291 L98,4287 L102,4287 C103.105,4287 104,4286.105 104,4285 L104,4281 C104,4279.895 103.105,4279 102,4279 L102,4279 Z" id="control-[#848]"> </path> </g> </g> </g> </g></svg>
+          <div class="">
+            <i :class="{ 'fas fa-lightbulb': node.type === 'light', 'fas fa-thermometer-half': node.type === 'thermostat' }" class="text-gray-500 text-xl"></i>
+            <div>
+              <p class="text-gray-600">Status: {{ node.status }}</p>
+              <a href="{% url 'send' pk=node.id %}">Control</a>
+            </div>
+          </div>
+        </div>
+        
+      {% endfor %}
+      </div>
+      
+
+    </main>
+
+  </div>
+
+
+
+  <script>
+    // JavaScript to access camera and microphone
+    const video = document.getElementById('camera');
+
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+      .then(stream => {
+        video.srcObject = stream;
+      })
+      .catch(error => {
+        console.error('Error accessing media devices.', error);
+      });
+  </script>
+  </body>

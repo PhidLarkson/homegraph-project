@@ -1,0 +1,44 @@
+
+{% if  request.user.is_authenticated %}
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+
+</head>
+<body class="bg-stone-300">
+  <div class="credentials p-5 text-2xl" style=" display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+">
+    
+    <form class="bg-secondary-subtle p-5 rounded-1" method="POST">  
+        <p>Do you really want to log out?</p>    
+        {% csrf_token %}
+         <button class="shadow-sm rounded-5 ms-auto text-red-500 p-2 border-2 border-gray-400 rounded-lg m-5" type="submit">Yes! Logout</button>
+    </form>
+    
+    {% else %}
+   <p class="">You are not logged in.  <form method="POST" action="{% url 'logout' %}">
+    <a href="/login/" class="text-white my-auto text-blue-400">
+      Login?
+    </a>
+  </form></p>
+</div> 
+</body>
+
+{% endif %}

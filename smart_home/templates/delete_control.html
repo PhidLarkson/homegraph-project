@@ -1,0 +1,10 @@
+
+{% block content %}
+    <h2>Delete Control</h2>
+    <form method="POST">
+    {% csrf_token %}
+        <p>Are you sure you want to delete "{{ control.name }}"?</p>
+        <button type="submit">Yes, delete</button>
+    </form>
+    <a href="{% url 'control_list' %}">No, take me back</a>
+{% endblock %}

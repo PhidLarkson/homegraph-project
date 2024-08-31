@@ -1,0 +1,65 @@
+
+{% if not request.user.is_authenticated %}
+<head>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#da373d',
+              }
+            }
+          }
+        }
+      </script>
+
+</head>
+<body class="bg-slate-100">
+  <div class="credentials p-5" style=" display: flex;
+align-items: center;
+justify-content: center;
+height: 100vh;
+">
+    
+    <form class="bg-secondary-subtle p-5 rounded-1 shadow-sm bg-white rounded-2xl" method="POST">
+      <div class="P-5"><h2 class="text-secondary pb-3">OPEN THE HOME NETWORK PORTAL</h2><hr><br>
+        
+        {% csrf_token %}
+        {% if error %}
+        <p style="color:red;">{{error}}</p>
+        {% endif %}
+        <div>
+            <input class="rounded-5 ps-4 p-1 border-2 rounded-md w-full" type="text" placeholder="username" name="username" required />
+        </div>
+        <br />
+        <div>
+            <input class="rounded-5 ps-4 p-1 border-2 rounded-md w-full" type="password" placeholder="password" name="password" required />
+        </div>
+        <br />
+        <div class="flex items-center">        <button class="rounded-5" type="submit"><svg width="45px" height="45px" viewBox="-12 -12 48.00 48.00" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.90039 7.56023C9.21039 3.96023 11.0604 2.49023 15.1104 2.49023H15.2404C19.7104 2.49023 21.5004 4.28023 21.5004 8.75023V15.2702C21.5004 19.7402 19.7104 21.5302 15.2404 21.5302H15.1104C11.0904 21.5302 9.24039 20.0802 8.91039 16.5402" stroke="#0060d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <g opacity="0.4"> <path d="M2 12H14.88" stroke="#0060d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12.6504 8.65039L16.0004 12.0004L12.6504 15.3504" stroke="#0060d6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg></button>
+        <a href="/signup/" class="text-blue-400 ms-auto text-sm"> REGISTER TO NETWORK</a></div>
+</div>
+
+        
+        
+
+
+    </form>
+    
+    {% else %}
+   <p>Already logged in, Logout?  <form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="text-white my-auto">
+      
+      <svg width="54px" height="54px" viewBox="-12 -12 48.00 48.00" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M8.90039 7.56023C9.21039 3.96023 11.0604 2.49023 15.1104 2.49023H15.2404C19.7104 2.49023 21.5004 4.28023 21.5004 8.75023V15.2702C21.5004 19.7402 19.7104 21.5302 15.2404 21.5302H15.1104C11.0904 21.5302 9.24039 20.0802 8.91039 16.5402" stroke="#ff3300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <g opacity="0.4"> <path d="M14.9991 12H3.61914" stroke="#ff3300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M5.85 8.65039L2.5 12.0004L5.85 15.3504" stroke="#ff3300" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> </g></svg>
+    </button>
+  </form></p>
+</div> 
+</body>
+
+{% endif %}
