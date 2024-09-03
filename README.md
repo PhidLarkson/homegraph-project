@@ -2,6 +2,12 @@
 
 **HomeLink** is a decentralized smart home dashboard that integrates Ethereum smart contracts, GhanaNLP language support, real-time data monitoring, and IoT control via an ESP32 microcontroller. This platform allows users to manage bills, monitor transactions, control their smart home devices, and communicate in local languages—all from a powerful and professional interface.
 
+![Uploading Screenshot from 2024-08-31 11-08-48.png…]()
+
+![Uploading Screenshot from 2024-08-31 11-03-46.png…]()
+
+
+
 ## 🚀 Features
 
 - **Smart Home Control**: Use an ESP32 microcontroller to manage your home devices via Wi-Fi.
@@ -28,6 +34,7 @@
 One particularly notable hack is how HomeLink’s smart home setup was streamlined using only an ESP32 and a JSON file acting as the local API. The monitoring script leverages this setup to trigger actions without requiring a heavy backend. Additionally, the integration of GhanaNLP for localized language support involved fine-tuning models to handle both translation and TTS functionalities efficiently within the existing system architecture.
 
 ## 📂 Project Structure
+This is the planned out project structure for the next release.
 
 ```plaintext
 HomeLink/
@@ -52,16 +59,15 @@ HomeLink/
 1. **Clone the Repository**
 
     ```bash
-    git clone https://github.com/YourUsername/HomeLink.git
-    cd HomeLink
+    git clone https://github.com/PhidLarkson/HomeLink.git
     ```
 
 2. **Install Dependencies**
 
     - **Backend** (Django & Python packages)
+    - Navigate to the requirements.txt file
 
       ```bash
-      cd backend/django_app
       pip install -r requirements.txt
       ```
 
@@ -72,7 +78,7 @@ HomeLink/
     - **ESP32** (Arduino IDE or PlatformIO)
 
       ```bash
-      cd esp32/firmware
+      It is in the hardware folder, as main.ino
       # Load and compile the firmware using Arduino IDE or PlatformIO
       ```
 
@@ -85,7 +91,7 @@ HomeLink/
     ETHEREUM_NODE_URL=https://your.ethereum.node.url
     ```
 
-4. **Run the Django Server**
+5. **Run the Django Server**
 
     ```bash
     cd backend/django_app
@@ -93,19 +99,13 @@ HomeLink/
     python manage.py runserver
     ```
 
-5. **Deploy Smart Contracts**
+6. **Deploy Smart Contracts**
 
     Deploy the Solidity contracts and update the deployed contract addresses in the Django settings.
 
-6. **Connect ESP32**
+7. **Connect ESP32**
 
     Flash the ESP32 with the firmware and ensure it’s connected to the Wi-Fi network.
-
-## 🔗 Demo & Links
-
-- **Video Demo**: [Watch Here](#)
-- **Deployed Application**: [Visit Here](#)
-- **GitHub Repository**: [HomeLink Repository](#)
 
 ## 📜 License
 
