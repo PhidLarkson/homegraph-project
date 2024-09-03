@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
         try {
             const transactionParams = {
                 from: userAccount,
-                to: '0x5ce2B056ecda83beFAC688527cB2db32944D6A29',  // Replace with the actual recipient address
+                to: '',  // fix with the actual recipient address
                 value: (totalAmountDue * 1e18).toString(16),  // Convert ETH to Wei
                 gasLimit: '0x5028',
                 maxPriorityFeePerGas: '0x3b9aca00',
