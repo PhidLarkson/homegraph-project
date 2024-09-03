@@ -2,9 +2,10 @@
 
 **HomeLink** is a decentralized smart home dashboard that integrates Ethereum smart contracts, GhanaNLP language support, real-time data monitoring, and IoT control via an ESP32 microcontroller. This platform allows users to manage bills, monitor transactions, control their smart home devices, and communicate in local languages—all from a powerful and professional interface.
 
-![Uploading Screenshot from 2024-08-31 11-08-48.png…]()
+![Screenshot from 2024-08-31 11-08-48](https://github.com/user-attachments/assets/eb0b6180-1aae-4241-b787-e2288c31a4fa)
 
-![Uploading Screenshot from 2024-08-31 11-03-46.png…]()
+
+![Screenshot from 2024-08-31 11-03-46](https://github.com/user-attachments/assets/b30bf038-69f9-4c8d-a94a-b01170d899aa)
 
 
 
